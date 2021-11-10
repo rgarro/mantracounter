@@ -25,7 +25,7 @@
 <link href="loader.css" rel="stylesheet">
 <script src="loader.js"></script>
 
-  <link rel="manifest" href="site.webmanifest">
+  <!-- <link rel="manifest" href="site.webmanifest">-->
   <meta name="theme-color" content="#fafafa">
 </head>
 <body>
@@ -64,17 +64,17 @@
     </div>
   </div>
   <div class="container">
-    <form class="row g-3">
+    <form class="row g-3" name="mantraCountFrm" id="mantraCountFrm">
       <div class="col-md-4">
         <label for="validationCustom01" class="form-label">Mantra</label>
-        <input type="text" class="form-control" id="mantra" value="avalokitesvara" required>
+        <input type="text" class="form-control" name="mantra" id="mantra" value="avalokitesvara" required>
         <div class="valid-feedback">
           Looks good!
         </div>
       </div>
       <div class="col-md-4">
         <label for="validationCustom02" class="form-label">Count</label>
-        <input type="number" class="form-control" id="count" value="1" required>
+        <input type="number" class="form-control" name="count" id="count" value="1" required>
         <div class="valid-feedback">
           Looks good!
         </div>
@@ -84,7 +84,21 @@
         <button class="btn btn-primary" type="submit">Submit form</button>
       </div>
     </form>
-    
+    <script>
+      $( document ).ready(function() {
+          console.log( "document loaded" );
+
+          $( "#mantraCountFrm" ).submit(function( event ) {
+              console.log( "Handler for .submit() called." );
+              event.preventDefault();
+          });
+
+      });
+   
+      $( window ).on( "load", function() {
+          console.log( "window loaded" );
+      });
+      </script>
   </div>
 
 </body>
