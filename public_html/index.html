@@ -85,17 +85,32 @@
         <button class="btn btn-primary" type="submit">Submit form</button>
       </div>
     </form>
-    <script>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+    
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyATTCCw-ma_76C0wiDDW76y5qw1BRBXGpw",
+        authDomain: "mantracounter-cf06f.firebaseapp.com",
+        databaseURL: "https://mantracounter-cf06f-default-rtdb.firebaseio.com",
+        projectId: "mantracounter-cf06f",
+        storageBucket: "mantracounter-cf06f.appspot.com",
+        messagingSenderId: "1091727105153",
+        appId: "1:1091727105153:web:8742b2bdefaf34a1430180"
+      };
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+    
       $( document ).ready(function() {
           console.log( "document loaded" );
-          // Initialize Cloud Firestore through Firebase
-firebase.initializeApp({
-  apiKey: '### FIREBASE API KEY ###',
-  authDomain: '### FIREBASE AUTH DOMAIN ###',
-  projectId: 'mantracounter-cf06f'
-});
 
-var db = firebase.firestore();
+  console.log("init app:"+app);
+//var db = firebase.firestore();
+//console.log("init db:"+db);
 
           $( "#mantraCountFrm" ).submit(function( event ) {
               console.log("db:"+db);
