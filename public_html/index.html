@@ -21,10 +21,17 @@
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.4.0/firebase-firestore-compat.min.js" integrity="sha512-pS2137aEr5tRw/Qb4v0UzpeAdrfmI15gZ3qjV5gaR9pMOodms3fbkU16bFYZDcZTCtGtqvUGUAG7/plkSlsg3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@latest/pace-theme-default.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css" integrity="sha512-NXUhxhkDgZYOMjaIgd89zF2w51Mub53Ru3zCNp5LTlEzMbNNAjTjDbpURYGS5Mop2cU4b7re1nOIucsVlrx9fA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js" integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 <!-- loader effects dependencies -->
-<link href="fonts.css" rel="stylesheet">
+<!--<link href="fonts.css" rel="stylesheet">
 <link href="loader.css" rel="stylesheet">
-<script src="loader.js"></script>
+<script src="loader.js"></script>-->
 
   <!-- <link rel="manifest" href="site.webmanifest">-->
   <meta name="theme-color" content="#fafafa">
@@ -34,35 +41,7 @@
   <!-- Add your site or application content here -->
   <!-- <p>Hello world! This is HTML5 Boilerplate.</p> -->
   <div class="container">
-    <div class="progress-container">
-      <div class="progress-box">
-          <div class="progress-fill"></div>
-      </div>
-      <div class="progress-state state-load">Loading…</div>
-      <div class="progress-state state-finish">Complete!</div>
-    </div>
-    <div class="dump-truck">
-      <div class="front"></div>
-      <div class="bucket"></div>
-      <div class="dirt">
-        <div class="dirt-spill"></div>
-      </div>
-      <div class="base"></div>
-      <div class="wheel wheel-front"></div>
-      <div class="wheel wheel-middle"></div>
-      <div class="wheel wheel-back"></div>
-    </div>
-    <div class="dump-truck">
-      <div class="front"></div>
-      <div class="bucket"></div>
-      <div class="dirt">
-        <div class="dirt-spill"></div>
-      </div>
-      <div class="base"></div>
-      <div class="wheel wheel-front"></div>
-      <div class="wheel wheel-middle"></div>
-      <div class="wheel wheel-back"></div>
-    </div>
+   <h1>Mantra Counter</h1>
   </div>
   <div class="container">
     <form class="row g-3" name="mantraCountFrm" id="mantraCountFrm">
@@ -86,6 +65,7 @@
       </div>
     </form>
     <script type="module">
+      import Noty from 'noty';
       // Import the functions you need from the SDKs you need
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-app.js";
       // TODO: Add SDKs for Firebase products that you want to use
@@ -113,9 +93,12 @@
 //console.log("init db:"+db);
 
           $( "#mantraCountFrm" ).submit(function( event ) {
-              console.log("db:"+db);
+              console.log(app);
               console.log( "Handler for .submit() called." );
+              console.log($("#mantra").val() + $("#count").val());
+              new Noty({text:'Some notification text',}).show();
               event.preventDefault();
+              return false;
           });
 
       });
