@@ -66,6 +66,7 @@
       //import Noty from 'noty';
       // Import the functions you need from the SDKs you need
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-app.js";
+      import {getFirestore,collection,getDocs} from 'https://www.gstatic.com/firebasejs/9.4.1/firebase-firestore.js';
       // TODO: Add SDKs for Firebase products that you want to use
       // https://firebase.google.com/docs/web/setup#available-libraries
     
@@ -82,7 +83,10 @@
     
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
-    
+      const db = getFirestore(app);
+      console.log("init db");
+      console.log(db);
+
       $( document ).ready(function() {
           console.log( "document loaded" );
 
