@@ -84,33 +84,26 @@
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
       const db = getFirestore(app);
-      //console.log("init db");
-      //console.log(db);
-
-      $( document ).ready(function() {
-          
-  //console.log("init app:"+app);
-//var db = firebase.firestore();
-//console.log("init db:"+db);
-
-          $( "#mantraCountFrm" ).submit(function( event ) {
-              console.log(app);
-              console.log(db);
-              console.log( "Handler for .submit() called." );
-              
-              //new Noty({text:'Some notification text',}).show();
-              try{
-                const docRef =  addDoc(collection(db, "mantras"), {
-    name: $("#mantra").val(),
-    count: $("#count").val()
-  });
-  console.log("Document written with ID: ", docRef.id);
+      
+      async function addMantra(){
+        try{
+          const docRef =  await addDoc(collection(db, "mantras"), {
+            name: $("#mantra").val(),
+            count: $("#count").val()
+          });
+          console.log("Document written with ID: ", docRef.id);
                 //let docRef = await setDoc(mantraRef, {name: $("#mantra").val(),count: $("#count").val()});
                 
               } catch (e) {
                 console.error("Error adding document: ", e);
               }
-             
+}
+      $( document ).ready(function() {
+
+          $( "#mantraCountFrm" ).submit(function( event ) {
+              addMantra();
+              alert("mantra count increased");
+              document.getElementById("mantraCountFrm").reset();
               event.preventDefault();
               return false;
           });
