@@ -50,7 +50,7 @@
       </div>
      
       <div class="col-12">
-        <button class="btn btn-primary" type="submit">Submit form</button>
+        <button id="reportbtn" class="btn " type="button">Report</button> <button class="btn btn-primary" type="submit">Submit form</button>
       </div>
     </form>
     <script type="module">
@@ -85,7 +85,20 @@
                 console.error("Error adding document: ", e);
               }
 }
+
+          async function getReport(){
+            const querySnapshot = await getDocs(collection(db, "mantras"));
+            querySnapshot.forEach((doc) => {
+            console.log(`${doc.id} => ${doc.data()}`);
+            });
+          }
+
       $( document ).ready(function() {
+
+          $("#reportbtn").click(function( event ) {
+            console.log("here ...");
+            getReport();
+          });
 
           $( "#mantraCountFrm" ).submit(function( event ) {
               addMantra();
@@ -97,6 +110,7 @@
 
       });
    
+      
       $( window ).on( "load", function() {
           //console.log( "window loaded" );
       });
