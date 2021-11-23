@@ -71,14 +71,14 @@
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
       const db = getFirestore(app);
-      
+      var totalCount = 0;
       async function addMantra(){
         try{
           const docRef =  await addDoc(collection(db, "mantras"), {
             name: $("#mantra").val(),
             count: $("#count").val()
           });
-          console.log("Document written with ID: ", docRef.id);
+          ///console.log("Document written with ID: ", docRef.id);
                 //let docRef = await setDoc(mantraRef, {name: $("#mantra").val(),count: $("#count").val()});
                 
               } catch (e) {
@@ -90,19 +90,21 @@
             const mantrasRef = collection(db, "mantras");
             // Create a query against the collection.
             const q = query(mantrasRef, where("name", "==", $("#mantra").val()));
-            console.log(q);
+            //console.log(q);
             const querySnapshot = await getDocs(q);
             querySnapshot.forEach((doc) => {
               // doc.data() is never undefined for query doc snapshots
-              console.log(doc.id, " => ", doc.data());
+              //console.log(doc.id, " => ", doc.data());
+              //console.log(doc.data().count);
+              totalCount = totalCount + Math.floor(doc.data().count);
             });
-
+            alert($("#mantra").val() + " malas:"+totalCount +" counted:"+totalCount*108);
           }
 
       $( document ).ready(function() {
 
           $("#reportbtn").click(function( event ) {
-            console.log("here ...");
+            //console.log("here ...");
             getReport();
           });
 
