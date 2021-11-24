@@ -100,8 +100,8 @@
               totalCount = totalCount + Math.floor(doc.data().count);
             });
             var repstr = $("#mantra").val() + " malas:"+totalCount +" counted:"+totalCount*108;
-            //console.log(template({ doesWhat: repstr }));
-            $("#reportcontainer").append(repstr);
+            //console.log();
+            $("#reportcontainer").append(template({ doesWhat: repstr }));
             totalCount = 0;
           }
 
