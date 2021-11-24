@@ -50,7 +50,7 @@
       </div>
      
       <div class="col-12">
-        <button id="reportbtn" class="btn " type="button">Report</button> <button class="btn btn-primary" type="submit">Submit form</button>
+        <button id="reportbtn" class="btn " type="button">Report</button> <button class="btn btn-primary" type="submit">Submit</button>
       </div>
     </form>
     <script type="module">
@@ -72,6 +72,7 @@
       const app = initializeApp(firebaseConfig);
       const db = getFirestore(app);
       var totalCount = 0;
+      var template = Handlebars.compile("<li>{{doesWhat}}</li>");
       async function addMantra(){
         try{
           const docRef =  await addDoc(collection(db, "mantras"), {
@@ -98,13 +99,15 @@
               //console.log(doc.data().count);
               totalCount = totalCount + Math.floor(doc.data().count);
             });
-            alert($("#mantra").val() + " malas:"+totalCount +" counted:"+totalCount*108);
+            var repstr = $("#mantra").val() + " malas:"+totalCount +" counted:"+totalCount*108;
+            //console.log(template({ doesWhat: repstr }));
+            $("#reportcontainer").append(repstr);
+            totalCount = 0;
           }
 
       $( document ).ready(function() {
 
           $("#reportbtn").click(function( event ) {
-            //console.log("here ...");
             getReport();
           });
 
@@ -126,9 +129,8 @@
   </div>
   <div class="container">
     <h3>Report</h3>
-    <ul>
-      <li>list</li>
-      <li>list</li>
+    <ul id="reportcontainer">
+      
     </ul>
    </div>
 </body>
