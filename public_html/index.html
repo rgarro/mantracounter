@@ -44,6 +44,7 @@
       <div class="col-md-4">
         <label for="validationCustom02" class="form-label">Count</label>
         <input type="number" class="form-control" name="count" id="count" value="1" required>
+        <input type="hidden" name="lat" id="lat"><input type="hidden" name="lon" id="lon">
         <div class="valid-feedback">
           Looks good!
         </div>
@@ -68,6 +69,38 @@
         appId: "1:1091727105153:web:8742b2bdefaf34a1430180"
       };
     
+      var clock = {
+    now:Date.now(),
+    add:function (qty, units) {
+            switch(units.toLowerCase()) {
+                case 'weeks'   :  val = qty * 1000 * 60 * 60 * 24 * 7;  break;
+                case 'days'    :  val = qty * 1000 * 60 * 60 * 24;  break;
+                case 'hours'   :  val = qty * 1000 * 60 * 60;  break;
+                case 'minutes' :  val = qty * 1000 * 60;  break;
+                case 'seconds' :  val = qty * 1000;  break;
+                default       :  val = undefined;  break;
+                }
+            return val;
+            },
+    format:function (timestamp){
+            var date = new Date(timestamp);
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var day = date.getDate();
+            var hours = date.getHours();
+            var minutes = "0" + date.getMinutes();
+            var seconds = "0" + date.getSeconds();
+            // Will display time in xx/xx/xxxx 00:00:00 format
+             var formattedTime = month + '/' + 
+                                day + '/' + 
+                                year + ' ' + 
+                                hours + ':' + 
+                                minutes.substr(-2) + 
+                                ':' + seconds.substr(-2);
+              return formattedTime;
+            }
+};
+
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
       const db = getFirestore(app);
@@ -77,7 +110,10 @@
         try{
           const docRef =  await addDoc(collection(db, "mantras"), {
             name: $("#mantra").val(),
-            count: $("#count").val()
+            count: $("#count").val(),
+            lat:  $("#lat").val(),
+            lon:  $("#lon").val(),
+            datetime:clock.format(clock.now)
           });
           ///console.log("Document written with ID: ", docRef.id);
                 //let docRef = await setDoc(mantraRef, {name: $("#mantra").val(),count: $("#count").val()});
@@ -107,6 +143,9 @@
 
       $( document ).ready(function() {
 
+        //console.log(clock.format(clock.now));
+//returns 10/8/2015 21:02:16
+
           $("#reportbtn").click(function( event ) {
             getReport();
           });
@@ -119,13 +158,32 @@
               return false;
           });
 
+          getLocation();
+
       });
    
       
       $( window ).on( "load", function() {
           //console.log( "window loaded" );
       });
-      </script>
+
+      var x = document.getElementById("demo");
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+  x.innerHTML = "Latitude: " + position.coords.latitude +
+  "<br>Longitude: " + position.coords.longitude;
+  $("#lon").val(position.coords.longitude);
+  $("#lat").val(position.coords.latitude);
+}
+
+</script>
   </div>
   <div class="container">
     <h3>Report</h3>
@@ -133,5 +191,6 @@
       
     </ul>
    </div>
+   <div id="demo" class="container"></div>
 </body>
 </html>
