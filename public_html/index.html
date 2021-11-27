@@ -186,11 +186,10 @@ function showPosition(position) {
 
 function showMap(position) {
   var latlon = position.coords.latitude + "," + position.coords.longitude;
-
   var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=14&size=400x300&sensor=false&key=YOUR_KEY";
-
-  document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
-  
+  //document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
+  console.log(img_url);
+  $("#mapholder").html("<img src='"+img_url+"'>");
 }
 
 </script>
