@@ -106,7 +106,8 @@
       const db = getFirestore(app);
       var totalCount = 0;
       var template = Handlebars.compile("<li>{{doesWhat}}</li>");
-      var mapsKey = "AIzaSyATTCCw-ma_76C0wiDDW76y5qw1BRBXGpw"
+      var mapsKey = "AIzaSyATTCCw-ma_76C0wiDDW76y5qw1BRBXGpw";
+      
       async function addMantra(){
         try{
           const docRef =  await addDoc(collection(db, "mantras"), {
