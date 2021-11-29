@@ -29,6 +29,11 @@
 <!-- Custom Theme JavaScript -->
 <script src="/js/handlebars-v4.0.11.js"></script>
 
+<script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly&channel=2"
+      async
+    ></script>
+
   <meta name="theme-color" content="#fafafa">
 </head>
 <body>
@@ -198,7 +203,17 @@ function showMap(position) {
   var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=14&size=400x300&sensor=false&key="+mapsKey;
   //document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
   console.log(img_url);
+  initMap();
   $("#mapholder").html("<img src='"+img_url+"'>");
+}
+
+let map;
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: $("#lat").val(), lng: $("#lon").val() },
+    zoom: 8,
+  });
 }
 
 </script>
@@ -210,6 +225,7 @@ function showMap(position) {
     </ul>
    </div>
    <div id="demo" class="container"></div>
-   <div id="demo" class="mapholder"></div>
+   <div id="mapholder" class="mapholder"></div>
+   <div id="map"></div>
 </body>
 </html>
