@@ -1,1 +1,3 @@
-# mantracounter
+# Mantra Counter
+
+Goraska asambleo a los gurkas para que los moros nunca lleguen a Lhasa ...
