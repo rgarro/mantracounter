@@ -24,6 +24,9 @@
 <script src="https://www.gstatic.com/firebasejs/ui/6.0.0/firebase-ui-auth.js"></script>
 <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.0/firebase-ui-auth.css" />
 
+<script src="https://www.gstatic.com/firebasejs/ui/6.0.0/firebase-ui-auth.js"></script>
+<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.0/firebase-ui-auth.css" />
+
 <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@latest/pace-theme-default.min.css">
 <!-- Custom Theme JavaScript -->
@@ -35,7 +38,7 @@
 </head>
 <body>
   <div class="container">
-   <h3>Mantra Counter</h3>
+   <h4>Mantra Counter</h4>
   </div>
   <div class="container">
     <form class="row g-3" name="mantraCountFrm" id="mantraCountFrm">
@@ -112,10 +115,14 @@
       var totalCount = 0;
       var template = Handlebars.compile("<li>{{doesWhat}}</li>");
       var mapsKey = "AIzaSyATTCCw-ma_76C0wiDDW76y5qw1BRBXGpw";
-      
-// Initialize the FirebaseUI Widget using Firebase.
-//var ui = new firebaseui.auth.AuthUI(firebase.auth());
-//console.log(ui);
+      /*
+      var firebase = require('firebase');
+      var firebaseui = require('firebaseui');
+
+      console.log("ini firebaseui ...");
+      console.log(firebaseui);
+      var ui = new firebaseui.auth.AuthUI(firebase.auth());
+      */
 
       async function addMantra(){
         try{
@@ -217,7 +224,7 @@ function initMap() {
 </script>
   </div>
   <div class="container">
-    <h3>Report</h3>
+    <h4>Report</h4>
     <ul id="reportcontainer">
       
     </ul>
