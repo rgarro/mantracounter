@@ -130,15 +130,15 @@
             const mantraNamesRef = collection(db, "mantra_names");//dimsa bhramaputra swift creek smashed turtle ..
             //Create a query against the collection.
            const q = query(mantraNamesRef); 
-      console.log(q);         
+      //console.log(q);         
            const querySnapshot =  await getDocs(q);
-           console.log("herer");
-           console.log(querySnapshot);
+           //console.log("herer");
+           //console.log(querySnapshot);
            querySnapshot.forEach((doc) => {
              //doc.data();// is never undefined for query doc snapshots
              //console.log(doc.name);//back to the future pepsi negra
-             console.log(doc.id, " => ", doc.data().name);
-             //$('#mantra').append($('<option>', { value: doc.data().name, text: doc.data().name }));
+             //console.log(doc.id, " => ", doc.data().name);
+             $('#mantra').append($('<option>', { value: doc.data().name, text: doc.data().name }));
            });
 
          } catch (e) {
