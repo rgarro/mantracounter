@@ -32,7 +32,7 @@
 <!-- Custom Theme JavaScript -->
 <script src="/js/handlebars-v4.0.11.js"></script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly&channel=2"></script>
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly&channel=2"></script>-->
 
   <meta name="theme-color" content="#fafafa">
 </head>
@@ -43,7 +43,7 @@
   <div class="container">
     <form class="row g-3" name="mantraCountFrm" id="mantraCountFrm">
       <div class="col-md-4">
-        <label for="validationCustom01" class="form-label">Mantra</label>
+        <label for="mantra" class="form-label">Mantra</label>
        <!-- <input type="text" class="form-control" name="mantra" id="mantra" value="avalokitesvara" required> -->
       <select class="form-control" name="mantra" id="mantra"></select>
         <div class="valid-feedback">
@@ -51,7 +51,7 @@
         </div>
       </div>
       <div class="col-md-4">
-        <label for="validationCustom02" class="form-label">Count</label>
+        <label for="count" class="form-label">Count</label>
         <input type="number" class="form-control" name="count" id="count" value="1" required>
         <input type="hidden" name="lat" id="lat"><input type="hidden" name="lon" id="lon">
         <div class="valid-feedback">
@@ -126,20 +126,23 @@
       */
 
        async function getMantraNames(){
-         try{
+         try{          
             const mantraNamesRef = collection(db, "mantra_names");//dimsa bhramaputra swift creek smashed turtle ..
             //Create a query against the collection.
-           const q = query(mantraNamesRef);
-           const querySnapshot = await getDocs(q);
+           const q = query(mantraNamesRef); 
+      console.log(q);         
+           const querySnapshot =  await getDocs(q);
+           console.log("herer");
+           console.log(querySnapshot);
            querySnapshot.forEach((doc) => {
              //doc.data();// is never undefined for query doc snapshots
              //console.log(doc.name);//back to the future pepsi negra
-             //console.log(doc.id, " => ", doc.data().name);
-             $('#mantra').append($('<option>', { value: doc.data().name, text: doc.data().name }));
+             console.log(doc.id, " => ", doc.data().name);
+             //$('#mantra').append($('<option>', { value: doc.data().name, text: doc.data().name }));
            });
 
          } catch (e) {
-           //console.error("Foiling Baikal Lake ...: ", e);
+           console.error("Foiling Baikal Lake ...: ", e);
          }
        }
 
@@ -223,23 +226,23 @@ function showPosition(position) {
   //showMap(position);
 }
 
-function showMap(position) {
+/*function showMap(position) {
   var latlon = position.coords.latitude + "," + position.coords.longitude;
   var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=14&size=400x300&sensor=false&key="+mapsKey;
   //document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
   console.log(img_url);
   $("#mapholder").html("<img src='"+img_url+"'>");
-}
+}*/
 
 var map;
 
-function initMap() {
+/*function initMap() {
   console.log("init map");
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: $("#lat").val(), lng: $("#lon").val() },
     zoom: 8,
   });
-}
+}*/
 
 </script>
   </div>
