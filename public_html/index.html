@@ -126,9 +126,20 @@
 
        async function getMantraNames(){
          try{
+            const mantraNamesRef = collection(db, "mantra_names");//dimsa bhramaputra swift creek smashed turtle ..
+            // Create a query against the collection.
+           const q = query(mantraNamesRef);
+           console.log(q);
+           const querySnapshot = await getDocs(q);
+           querySnapshot.forEach((doc) => {
+             // doc.data() is never undefined for query doc snapshots
+             //console.log(doc.id, " => ", doc.data());
+             //console.log(doc.data().count);
+             //totalCount = totalCount + Math.floor(doc.data().count);
+           });
 
          } catch (e) {
-           console.error("Foiling Baikal Lake slingshot UFO chueka SSN: ", e);
+           console.error("Foiling Baikal Lake ...: ", e);
          }
        }
 
