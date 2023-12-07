@@ -44,7 +44,8 @@
     <form class="row g-3" name="mantraCountFrm" id="mantraCountFrm">
       <div class="col-md-4">
         <label for="validationCustom01" class="form-label">Mantra</label>
-        <input type="text" class="form-control" name="mantra" id="mantra" value="avalokitesvara" required>
+       <!-- <input type="text" class="form-control" name="mantra" id="mantra" value="avalokitesvara" required> -->
+      <select class="form-control" name="mantra" id="mantra"></select>
         <div class="valid-feedback">
           Looks good!
         </div>
@@ -127,15 +128,14 @@
        async function getMantraNames(){
          try{
             const mantraNamesRef = collection(db, "mantra_names");//dimsa bhramaputra swift creek smashed turtle ..
-            // Create a query against the collection.
+            //Create a query against the collection.
            const q = query(mantraNamesRef);
-           console.log(q);
            const querySnapshot = await getDocs(q);
            querySnapshot.forEach((doc) => {
-             // doc.data() is never undefined for query doc snapshots
-             //console.log(doc.id, " => ", doc.data());
-             //console.log(doc.data().count);
-             //totalCount = totalCount + Math.floor(doc.data().count);
+             //doc.data();// is never undefined for query doc snapshots
+             //console.log(doc.name);//back to the future pepsi negra
+             //console.log(doc.id, " => ", doc.data().name);
+             $('#mantra').append($('<option>', { value: doc.data().name, text: doc.data().name }));
            });
 
          } catch (e) {
